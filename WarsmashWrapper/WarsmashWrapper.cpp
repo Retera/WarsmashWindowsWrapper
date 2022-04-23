@@ -42,10 +42,10 @@ int WINAPI WinMain(
 	if (lpCmdLine != NULL) {
 		WCHAR lpwCmdLine[MAX_PATH];
 		MultiByteToWideChar(CP_ACP, 0, lpCmdLine, -1, lpwCmdLine, MAX_PATH);
-		wsprintf(cmdArgs, L"jre\\bin\\java.exe -jar warsmash.jar %s", lpwCmdLine);
+		wsprintf(cmdArgs, L"bin\\warsmash.bat %s", lpwCmdLine);
 	}
 	else {
-		wchar_t cmdArgsBase[] = L"jre\\bin\\java.exe -jar warsmash.jar";
+		wchar_t cmdArgsBase[] = L"bin\\warsmash.bat";
 		if (wcsncpy_s(cmdArgs, MAX_PATH, cmdArgsBase, MAX_PATH)) {
 			std::cout << "Unable to generate fowarded argument list.\n";
 			return FALSE;
@@ -54,7 +54,7 @@ int WINAPI WinMain(
 
 
 	// Start the child process. 
-	BOOL result = CreateProcess(TEXT("jre\\bin\\java.exe"),   // No module name (use command line)
+	BOOL result = CreateProcess(TEXT("bin\\warsmash.bat"),   // No module name (use command line)
 		cmdArgs,        // Command line
 		NULL,           // Process handle not inheritable
 		NULL,           // Thread handle not inheritable
